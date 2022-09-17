@@ -1,0 +1,23 @@
+body
+{
+text-align: center;
+}
+
+.heading {
+    width: 100%;
+    text-align: left;
+    
+    }
+    
+    #instructions{
+    float:right;   
+    border: 3px;
+    background-color: crimson;
+    border-color: darkblue;
+    
+    }
+    
+    .heading h3{
+    display: inline;
+    
+    }
