@@ -21,3 +21,7 @@ text-align: center;
     display: inline;
     
     }
+
+    .instruction_image{
+        display:inline-block;
+        width: 100%; }
