@@ -22,8 +22,32 @@ var ball = {
 }
 
 function setup(){
-  var canvas =  createCanvas(700,600);
+  canvas =  createCanvas(700,600);
+  video = createCapture(VIDEO);
+  video.size(500,300);
+  video.parent("canvas");
+  video.hide();
+
+  poseNet = ml5.poseNet(video, modelLoaded);
+  poseNet.on('pose', gotPoses);
 }
+
+function modelLoaded(){
+  console.log("model is loaded");
+  
+  
+  }
+  
+  function gotPoses(results)
+  {
+    if(results.length > 0)
+    {
+      paddle1X = results[0].pose.rightWrist.x;
+      paddle1Y = results[0].pose.rightWrist.y;
+      console.log("paddle1X = " + paddle1X +", paddle1Y = " + paddle1Y);
+    }
+  }
+  
 
 
 function draw(){

@@ -25,3 +25,13 @@ text-align: center;
     .instruction_image{
         display:inline-block;
         width: 100%; }
+
+        #credits{ 
+            background-color: blue;
+margin-bottom:0 ;
+font-size: 20px;
+line-height: 1;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-style: italic;
+color:aliceblue;
+        }
