@@ -12,6 +12,7 @@ var paddle1Y;
 var  playerscore =0;
 var audio1;
 var pcscore =0;
+game_status= "";
 //ball x and y and speedx speed y and radius
 var ball = {
     x:350/2,
@@ -32,10 +33,23 @@ function setup(){
   poseNet.on('pose', gotPoses);
 }
 
+function start(){
+  game_status= "start";
+  document.getElementById("status").innerHTML="game is loaded";
+}
+
+
+function restart(){
+pcscore=0;
+playerscore=0;
+loop();
+
+}
+
 function modelLoaded(){
   console.log("model is loaded");
-  
-  
+  miss = loadSound("missed.wav");
+  touch = loadSound("ball_touch_paddel.wav");
   }
   
   function gotPoses(results)
@@ -51,7 +65,7 @@ function modelLoaded(){
 
 
 function draw(){
-
+if(game_status=="start"){
  background(0); 
 
  fill("black");
@@ -61,6 +75,12 @@ function draw(){
  fill("black");
  stroke("black");
  rect(0,0,20,700);
+
+if(rightWrist>0.2){ 
+  fill("#0000FF");
+  stroke("#0000FF");
+  circle(paddle1X,paddle1Y,40);
+}
  
    //funtion paddleInCanvas call 
    paddleInCanvas();
@@ -142,11 +162,13 @@ function move(){
   if (ball.y >= paddle1Y&& ball.y <= paddle1Y + paddle1Height) {
     ball.dx = -ball.dx+0.5;
     playerscore++;
+    touch();
   }
   else{
     pcscore++;
     reset();
     navigator.vibrate(100);
+    miss();
   }
 }
 if(pcscore ==4){
@@ -164,6 +186,8 @@ if(pcscore ==4){
    if(ball.y+ball.r > height || ball.y-ball.r <0){
        ball.dy =- ball.dy;
    }   
+
+  
 }
 
 
@@ -187,4 +211,4 @@ function paddleInCanvas(){
     mouseY =0;
   }  
 }
-
+}
